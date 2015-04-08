@@ -20,14 +20,6 @@
 
 #define PIXELPIN 2  // neopixel control pin
 #define PIXELNUM 13 //total number of pixels
-
-// Parameter 1 = number of pixels in strip
-// Parameter 2 = Arduino pin number (most are valid)
-// Parameter 3 = pixel type flags, add together as needed:
-//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
-//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
-//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
-//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(PIXELNUM, PIXELPIN, NEO_GRB + NEO_KHZ800);
 
 // Landing light settings
@@ -42,7 +34,7 @@ const byte LANDPIX[LPIXNUM] = {5,6,7}; //landing pixel positions
 // Strobe settings
 const byte SPIXNUM = 2; //number of strobe pixels
 const byte STROBEPIX[SPIXNUM] = {0,12}; //strobe pixel positions
-#define STB_BLINK_INTERVAL 2000000//2000000 // Blink interval for strobe light in microseconds
+#define STB_BLINK_INTERVAL 2000000 // Blink interval for strobe light in microseconds
 
 // Anti-collision beacon settings
 const byte APIXNUM = 4; //number of for anti-collision beacon 1 pixels
@@ -52,7 +44,7 @@ byte FADEBPIX[BPIXNUM] = {8,9,10,11}; //for anti-collision beacon 2 pixel positi
 #define ACB_FADE_MIN 30 // Minimum fade level for beacon (0-255)
 #define ACB_FADE_MAX 70 // Maximum fade level for beacon (0-255)
 #define ACB_FADE_STR 255
-#define ACB_FADE_INTERVAL 25000//30000 // Fade step interval, in microseconds (lower numbers = faster fade)
+#define ACB_FADE_INTERVAL 25000 // Fade step interval, in microseconds (lower numbers = faster fade)
 
 // Var declarations
 volatile unsigned long servoPulseStartTime;
@@ -63,8 +55,6 @@ unsigned long lastFadeTime = 0;
 unsigned long lastStrobeTime = 0;
 int currentFade = ACB_FADE_MIN;
 int fadeDirection = 1;
-
-
 
 // Called on power on or reset
 void setup()
@@ -77,12 +67,9 @@ void setup()
     pixels.setPixelColor(i, pixels.Color(0, 0, 0));
   }
   
-  
  //If you want Static Pixels, here's a good place to put them Green, Red, Blue 
  // pixels.setPixelColor(2, pixels.Color(50,0,0));
- // pixels.setPixelColor(3, pixels.Color(50,0,0));
- // pixels.setPixelColor(9, pixels.Color(0,50,0));
- // pixels.setPixelColor(10, pixels.Color(0,50,0));
+ 
   pixels.show();
 
   // Set up interrupt handler
